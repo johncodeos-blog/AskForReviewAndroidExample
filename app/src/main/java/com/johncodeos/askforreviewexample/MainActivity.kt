@@ -3,22 +3,22 @@ package com.johncodeos.askforreviewexample
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import com.google.android.play.core.review.ReviewManagerFactory
-import com.google.android.play.core.review.testing.FakeReviewManager
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        show_rate_app_btn.setOnClickListener {
+        val showRateAppBtn = findViewById<Button>(R.id.show_rate_app_btn)
+        showRateAppBtn.setOnClickListener {
             inAppReview()
         }
     }
 
 
-    fun inAppReview() {
+    private fun inAppReview() {
         val reviewManager = ReviewManagerFactory.create(this)
         val requestReviewFlow = reviewManager.requestReviewFlow()
         requestReviewFlow.addOnCompleteListener { request ->
